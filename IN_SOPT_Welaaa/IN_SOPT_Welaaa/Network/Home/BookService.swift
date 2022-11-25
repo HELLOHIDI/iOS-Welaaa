@@ -11,6 +11,7 @@ import Moya
 
 enum BookService {
     case getBook
+    case getBookDetail(bookId: Int)
 }
 
 extension BookService: TargetType {
@@ -22,12 +23,16 @@ extension BookService: TargetType {
         switch self {
         case .getBook:
             return URLs.book
+        case .getBookDetail(let bookId):
+            return URLs.bookDetail.replacingOccurrences(of: "{bookId}", with: "\(bookId)")
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .getBook:
+            return .get
+        case .getBookDetail:
             return .get
         }
     }
@@ -40,12 +45,14 @@ extension BookService: TargetType {
         switch self {
         case .getBook:
             return .requestPlain
+        case .getBookDetail(let bookId):
+            return .requestParameters(parameters: ["bookId": bookId], encoding: URLEncoding.queryString)
         }
     }
     
     var headers: [String: String]? {
         switch self {
-        case .getBook:
+        case .getBook, .getBookDetail:
             return [
                 "Content-Type": "application/json"
             ]

@@ -21,6 +21,13 @@ final class BookDetailViewController: BaseViewController {
         bookDetailView.bookIntroductionView.backButton.addTarget(self, action: #selector(touchupBackButton), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        self.getBookDetail()
+    }
+    
     @objc
     private func touchupBackButton() {
         self.dismiss(animated: true, completion: nil)
@@ -138,5 +145,34 @@ extension BookDetailViewController: UITableViewDataSource {
             return UIView()
         }
     }
+}
+
+extension BookDetailViewController {
+    
+    func getBookDetail() {
+        
+        BookAPI.shared.getBookDetail(bookId: 2) { response in
+            print(333, response)
+            
+            switch response {
+            case .success(let data):
+                
+                if let data = data as? [BookIDData] {
+                    print(111, data)
+
+                }
+            case .requestErr(let message):
+                print("requestErr", message)
+            case .pathErr:
+                print(".pathErr")
+            case .serverErr:
+                print("serverErr")
+            case .networkFail:
+                print("networkFail")
+            }
+
+        }
+    }
+    
 }
 

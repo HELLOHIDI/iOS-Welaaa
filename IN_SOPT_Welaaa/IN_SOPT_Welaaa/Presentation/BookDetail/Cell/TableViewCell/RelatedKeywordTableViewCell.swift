@@ -16,6 +16,8 @@ final class RelatedKeywordTableViewCell: UITableViewCell {
     
     private var keywordDummy = Name.keywordDummy()
     
+    private var keywordSizeDummy : [Int] = [53, 65, 65, 65, 65, 93, 77, 58, 41, 41, 53, 53]
+    
     lazy var relatedKeywordCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -61,11 +63,11 @@ final class RelatedKeywordTableViewCell: UITableViewCell {
 
 extension RelatedKeywordTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 105, height: 120)
+        return CGSize(width: keywordSizeDummy[indexPath.item], height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return  UIEdgeInsets(top: 20, left: 0, bottom: 40, right: 0)
+        return  UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     }
 }
 

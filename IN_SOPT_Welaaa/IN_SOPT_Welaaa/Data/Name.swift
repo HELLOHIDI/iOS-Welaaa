@@ -52,10 +52,10 @@ extension Name {
             Name(name: "재미교포"),
             Name(name: "베스트셀러"),
             Name(name: "애플TV"),
-//            Name(name: "조선"),
-//            Name(name: "선자"),
-//            Name(name: "고한수"),
-//            Name(name: "백이삭")
+            Name(name: "조선"),
+            Name(name: "선자"),
+            Name(name: "고한수"),
+            Name(name: "백이삭")
         ]
     }
 }
